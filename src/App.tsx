@@ -77,8 +77,6 @@ const App = () => {
 
   const handleStart = () => {
     setIsStart(true);
-    setIsPlaying(true);
-
     createGrid();
   };
 
@@ -102,10 +100,18 @@ const App = () => {
         } while (tmpGridItems[pos].icon !== null);
 
         tmpGridItems[pos].icon = cardItems[z].icon;
+        tmpGridItems[pos].permanentShown = true;
       }
     }
-
     setGridItems([...tmpGridItems]);
+
+    setTimeout(() => {
+      for (let i in tmpGridItems) {
+        tmpGridItems[i].permanentShown = false;
+        setIsPlaying(true);
+        setGridItems([...tmpGridItems]);
+      }
+    }, 3000);
   };
 
   const handleTurnCard = (key: number) => {
