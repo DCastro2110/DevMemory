@@ -3,7 +3,7 @@ import { GridItemType } from "../../types/GridItemType";
 import * as S from "./style";
 
 import b7Logo from "../../assets/svg/b7.svg";
-import { MouseEventHandler } from "react";
+import { MouseEventHandler, useEffect, useState } from "react";
 
 type Props = {
   item: GridItemType;

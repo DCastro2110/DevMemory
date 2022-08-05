@@ -6,7 +6,7 @@ export const Container = styled.div`
   margin: auto;
   display: flex;
   justify-content: space-between;
-  padding: 50px 0;
+  padding: 50px 0 20px 0;
   gap: 50px;
 
   @media (max-width: 768px) {
@@ -89,6 +89,26 @@ export const GameArea = styled.div`
 
 export const StartAlert = styled.strong`
   font-size: 20px;
+`;
+
+export const MainArea = styled.div`
+  flex: 1;
+  max-width: 600px;
+`;
+
+export const TextAlert = styled.div`
+  width: 100%;
+  height: 80px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  span {
+    font-size: 30px;
+    font-weight: bold;
+    color: #16213e;
+  }
 `;
 
 export const GridArea = styled.div`

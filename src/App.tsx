@@ -23,6 +23,10 @@ const App = () => {
   const [moveCount, setMoveCount] = useState<number>(0);
   const [shownCount, setShownCount] = useState<number>(0);
   const [gridItems, setGridItems] = useState<GridItemType[]>([]);
+  const [hasAWinner, setHasAWinner] = useState<boolean>(false);
+  const [alertMessage, setAlertMessage] = useState<string | number>(0);
+
+  let delayTurnCards = 3; // Delay para virar as cartas em segundos
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -71,9 +75,26 @@ const App = () => {
     if (moveCount >= items.length) {
       if (gridItems.every((item) => item.permanentShown)) {
         setIsPlaying(false);
+        setHasAWinner(true);
       }
     }
   }, [moveCount]);
+
+  // Muda a mensagem do alert
+  useEffect(() => {
+    if (hasAWinner) {
+      setAlertMessage("Você ganhou!!!");
+      return;
+    }
+    const timer = setInterval(() => {
+      if (typeof alertMessage === "number" && alertMessage > 1) {
+        setAlertMessage(alertMessage - 1);
+      } else {
+        setAlertMessage("Em Jogo");
+      }
+    }, 1000);
+    return () => clearInterval(timer);
+  }, [alertMessage, hasAWinner]);
 
   const handleStart = () => {
     setIsStart(true);
@@ -81,13 +102,14 @@ const App = () => {
   };
 
   const createGrid = () => {
+    setAlertMessage(delayTurnCards);
     let tmpGridItems: GridItemType[] = [];
 
     for (let i = 0; i < 12; i++) {
       tmpGridItems.push({
         icon: null,
         shown: false,
-        permanentShown: false,
+        permanentShown: true,
       });
     }
 
@@ -100,7 +122,6 @@ const App = () => {
         } while (tmpGridItems[pos].icon !== null);
 
         tmpGridItems[pos].icon = cardItems[z].icon;
-        tmpGridItems[pos].permanentShown = true;
       }
     }
     setGridItems([...tmpGridItems]);
@@ -111,7 +132,7 @@ const App = () => {
         setIsPlaying(true);
         setGridItems([...tmpGridItems]);
       }
-    }, 3000);
+    }, delayTurnCards * 1000);
   };
 
   const handleTurnCard = (key: number) => {
@@ -129,6 +150,7 @@ const App = () => {
 
   const handleRestart = () => {
     setIsPlaying(true);
+    setHasAWinner(false);
     setTimeElapsed(0);
     setMoveCount(0);
 
@@ -178,15 +200,20 @@ const App = () => {
         )}
 
         {isStart && (
-          <S.GridArea>
-            {gridItems.map((item, key) => (
-              <GridCard
-                key={key}
-                item={item}
-                onClick={() => handleTurnCard(key)}
-              />
-            ))}
-          </S.GridArea>
+          <S.MainArea>
+            <S.TextAlert>
+              <span>{alertMessage}</span>
+            </S.TextAlert>
+            <S.GridArea>
+              {gridItems.map((item, key) => (
+                <GridCard
+                  key={key}
+                  item={item}
+                  onClick={() => handleTurnCard(key)}
+                />
+              ))}
+            </S.GridArea>
+          </S.MainArea>
         )}
       </S.GameArea>
     </S.Container>

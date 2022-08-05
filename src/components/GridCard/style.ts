@@ -12,8 +12,9 @@ export const Container = styled.div<ContainerProps>`
   justify-content: center;
   align-items: center;
   background-color: ${(props) => (props.shown ? "#0e64b2" : "#ccc")};
+  transform: ${(props) => (props.shown ? "rotateY(180deg)" : "rotateY(0)")};
   cursor: pointer;
-  transition: background-color 150ms ease-in-out;
+  transition: background-color 150ms ease-in-out, transform 400ms linear;
 
   &:hover {
     background-color: ${(props) => (props.shown ? "" : "#aaa")};
@@ -22,5 +23,6 @@ export const Container = styled.div<ContainerProps>`
   img {
     width: 70px;
     opacity: ${(props) => (props.shown ? 1 : 0.3)};
+    transform: ${(props) => (props.shown ? "rotateY(180deg)" : "rotateY(0)")};
   }
 `;
