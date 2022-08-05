@@ -26,7 +26,7 @@ const App = () => {
   const [hasAWinner, setHasAWinner] = useState<boolean>(false);
   const [alertMessage, setAlertMessage] = useState<string | number>(0);
 
-  let delayTurnCards = 3; // Delay para virar as cartas em segundos
+  let delayTurnCards = 3; // Delay para virar as cartas (em segundos)
 
   useEffect(() => {
     const timer = setInterval(() => {

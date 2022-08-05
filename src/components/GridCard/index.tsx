@@ -13,7 +13,10 @@ type Props = {
 export const GridCard = ({ item, onClick }: Props) => {
   return (
     <S.Container shown={item.permanentShown || item.shown} onClick={onClick}>
-      <img src={((item.shown || item.permanentShown) && item.icon) || b7Logo} />
+      <img
+        draggable={false}
+        src={((item.shown || item.permanentShown) && item.icon) || b7Logo}
+      />
     </S.Container>
   );
 };
