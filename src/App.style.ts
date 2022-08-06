@@ -37,7 +37,7 @@ export const LogoLink = styled.a`
 export const InfoArea = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 20px;
 
   @media (max-width: 768px) {
     flex-direction: row;

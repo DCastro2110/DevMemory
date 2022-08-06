@@ -14,6 +14,7 @@ export const Button = styled.button<ButtonProps>`
   transition: opacity 300ms ease-in-out;
   display: flex;
   align-items: center;
+  box-shadow: 0 0 10px 1px rgba(0, 0, 0, .5);
 
   &:hover {
     opacity: 0.8;
