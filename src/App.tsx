@@ -24,7 +24,9 @@ const App = () => {
   const [shownCount, setShownCount] = useState<number>(0);
   const [gridItems, setGridItems] = useState<GridItemType[]>([]);
   const [hasAWinner, setHasAWinner] = useState<boolean>(false);
-  const [alertMessage, setAlertMessage] = useState<string | number>(0);
+  const [alertMessage, setAlertMessage] = useState<string | number>(
+    "Está pronto?"
+  );
 
   let delayTurnCards = 3; // Delay para virar as cartas (em segundos)
 
@@ -86,6 +88,14 @@ const App = () => {
       setAlertMessage("Você ganhou!!!");
       return;
     }
+
+    if (alertMessage === "Está pronto?") {
+      setTimeout(() => {
+        setAlertMessage(delayTurnCards);
+      }, 1000);
+      return;
+    }
+
     const timer = setInterval(() => {
       if (typeof alertMessage === "number" && alertMessage > 1) {
         setAlertMessage(alertMessage - 1);
@@ -102,14 +112,14 @@ const App = () => {
   };
 
   const createGrid = () => {
-    setAlertMessage(delayTurnCards);
+    setAlertMessage("Está pronto?");
     let tmpGridItems: GridItemType[] = [];
 
     for (let i = 0; i < 12; i++) {
       tmpGridItems.push({
         icon: null,
         shown: false,
-        permanentShown: true,
+        permanentShown: false,
       });
     }
 
@@ -128,11 +138,18 @@ const App = () => {
 
     setTimeout(() => {
       for (let i in tmpGridItems) {
-        tmpGridItems[i].permanentShown = false;
-        setIsPlaying(true);
-        setGridItems([...tmpGridItems]);
+        tmpGridItems[i].permanentShown = true;
       }
-    }, delayTurnCards * 1000);
+      setGridItems([...tmpGridItems]);
+
+      setTimeout(() => {
+        for (let i in tmpGridItems) {
+          tmpGridItems[i].permanentShown = false;
+          setIsPlaying(true);
+        }
+        setGridItems([...tmpGridItems]);
+      }, delayTurnCards * 1000);
+    }, 1000);
   };
 
   const handleTurnCard = (key: number) => {
@@ -149,10 +166,10 @@ const App = () => {
   };
 
   const handleRestart = () => {
-    setIsPlaying(true);
     setHasAWinner(false);
     setTimeElapsed(0);
     setMoveCount(0);
+    setIsPlaying(false);
 
     createGrid();
   };
