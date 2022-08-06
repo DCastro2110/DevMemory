@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 
 import { Button } from "./components/Button";
 import { GridCard } from "./components/GridCard";
@@ -27,6 +27,7 @@ const App = () => {
   const [alertMessage, setAlertMessage] = useState<string | number>(
     "Está pronto?"
   );
+  const [cardsQuant, setCardsQuant] = useState<number>(12);
 
   let delayTurnCards = 5; // Delay para virar as cartas (em segundos)
 
@@ -106,6 +107,8 @@ const App = () => {
     return () => clearInterval(timer);
   }, [alertMessage, hasAWinner]);
 
+  // Setar o valor inicial da quantidade de cartas
+
   const handleStart = () => {
     setIsStart(true);
     createGrid();
@@ -115,7 +118,7 @@ const App = () => {
     setAlertMessage("Está pronto?");
     let tmpGridItems: GridItemType[] = [];
 
-    for (let i = 0; i < items.length * 2; i++) {
+    for (let i = 0; i < cardsQuant * 2; i++) {
       tmpGridItems.push({
         icon: null,
         shown: false,
@@ -124,11 +127,11 @@ const App = () => {
     }
 
     for (let i = 0; i < 2; i++) {
-      for (let z = 0; z < cardItems.length; z++) {
+      for (let z = 0; z < cardsQuant; z++) {
         let pos;
 
         do {
-          pos = randomNum();
+          pos = randomNum(cardsQuant);
         } while (tmpGridItems[pos].icon !== null);
 
         tmpGridItems[pos].icon = cardItems[z].icon;
@@ -170,8 +173,17 @@ const App = () => {
     setTimeElapsed(0);
     setMoveCount(0);
     setIsPlaying(false);
+    setIsStart(false);
+  };
 
-    createGrid();
+  const handleSelectDifficult = (
+    e: ChangeEvent<HTMLInputElement>,
+    quant: number
+  ) => {
+    if (e.target.checked) {
+      setCardsQuant(quant);
+      return;
+    }
   };
 
   return (
@@ -182,15 +194,60 @@ const App = () => {
         </S.LogoLink>
 
         <S.InfoArea>
-          <S.Info>
-            <span>Tempo</span>
-            <strong>{timerFormator(timeElapsed)}</strong>
-          </S.Info>
+          {isStart && (
+            <>
+              <S.Info>
+                <span>Tempo</span>
+                <strong>{timerFormator(timeElapsed)}</strong>
+              </S.Info>
 
-          <S.Info>
-            <span>Movimentos</span>
-            <strong>{moveCount}</strong>
-          </S.Info>
+              <S.Info>
+                <span>Movimentos</span>
+                <strong>{moveCount}</strong>
+              </S.Info>
+            </>
+          )}
+          {!isStart && (
+            <S.Fieldset>
+              <legend>Selecione o nível de dificuldade:</legend>
+              <div>
+                <label>
+                  Fácil
+                  <input
+                    type="radio"
+                    name="difficult"
+                    value="4"
+                    onChange={(e) =>
+                      handleSelectDifficult(e, Number(e.target.value))
+                    }
+                  />
+                </label>
+                <label>
+                  Intermediário
+                  <input
+                    type="radio"
+                    name="difficult"
+                    value="6"
+                    defaultChecked
+                    onChange={(e) =>
+                      handleSelectDifficult(e, Number(e.target.value))
+                    }
+                  />
+                </label>
+                <label>
+                  Difícil
+                  <input
+                    type="radio"
+                    name="difficult"
+                    value="12"
+                    onChange={(e) =>
+                      handleSelectDifficult(e, Number(e.target.value))
+                    }
+                  />
+                </label>
+              </div>
+            </S.Fieldset>
+          )}
         </S.InfoArea>
         {!isStart && (
           <Button
@@ -221,7 +278,7 @@ const App = () => {
             <S.TextAlert>
               <span>{alertMessage}</span>
             </S.TextAlert>
-            <S.GridArea>
+            <S.GridArea cols={cardsQuant}>
               {gridItems.map((item, key) => (
                 <GridCard
                   key={key}

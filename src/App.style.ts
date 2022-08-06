@@ -70,6 +70,22 @@ export const Info = styled.div`
   } ;
 `;
 
+export const Fieldset = styled.fieldset`
+  border: none;
+
+  div {
+    margin-top: 10px;
+  }
+
+  label {
+    margin-right: 10px;
+
+    input {
+      margin-left: 5px;
+    }
+  }
+`;
+
 export const GameArea = styled.div`
   max-width: 600px;
   width: 100%;
@@ -94,6 +110,9 @@ export const StartAlert = styled.strong`
 export const MainArea = styled.div`
   flex: 1;
   max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 export const TextAlert = styled.div`
@@ -111,10 +130,12 @@ export const TextAlert = styled.div`
   }
 `;
 
-export const GridArea = styled.div`
-  flex: 1;
+export const GridArea = styled.div<{ cols: number }>`
+  justify-items: center;
+  justify-content: center;
+  width: 100%;
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(${(props) => props.cols / 2}, 1fr);
   gap: 10px;
 
   @media (max-width: 768px) {

@@ -1,5 +1,5 @@
 import { items } from "../data/items";
 
-export const randomNum = (): number => {
-  return Math.floor(Math.random() * (items.length * 2));
+export const randomNum = (quant: number): number => {
+  return Math.floor(Math.random() * (quant * 2));
 };
