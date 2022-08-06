@@ -28,7 +28,7 @@ const App = () => {
     "Está pronto?"
   );
 
-  let delayTurnCards = 3; // Delay para virar as cartas (em segundos)
+  let delayTurnCards = 5; // Delay para virar as cartas (em segundos)
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -115,7 +115,7 @@ const App = () => {
     setAlertMessage("Está pronto?");
     let tmpGridItems: GridItemType[] = [];
 
-    for (let i = 0; i < 12; i++) {
+    for (let i = 0; i < items.length * 2; i++) {
       tmpGridItems.push({
         icon: null,
         shown: false,

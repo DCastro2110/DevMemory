@@ -6,8 +6,9 @@ type ContainerProps = {
 
 export const Container = styled.div<ContainerProps>`
   max-width: 130px;
-  height: 150px;
+  height: 100px;
   border-radius: 10px;
+  padding: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -21,7 +22,7 @@ export const Container = styled.div<ContainerProps>`
   }
 
   img {
-    width: 70px;
+    width: 50px;
     opacity: ${(props) => (props.shown ? 1 : 0.3)};
     transform: ${(props) => (props.shown ? "rotateY(180deg)" : "rotateY(0)")};
   }
