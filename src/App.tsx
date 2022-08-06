@@ -15,6 +15,7 @@ import { GridItemType } from "./types/GridItemType";
 
 import { randomNum } from "./utils/randomNum";
 import { timerFormator } from "./utils/timerFormator";
+import { RadioInput } from "./components/RadioInput";
 
 const App = () => {
   const [isStart, setIsStart] = useState<boolean>(false);
@@ -184,7 +185,6 @@ const App = () => {
     if (e.target.checked) {
       setCardsQuant(quant);
       setDefaultChecked(Number(e.target.getAttribute("data-key")));
-      return;
     }
   };
 
@@ -213,45 +213,30 @@ const App = () => {
             <S.Fieldset>
               <legend>Selecione o nível de dificuldade:</legend>
               <div>
-                <label>
+                <RadioInput
+                  isDefaultChecked={defaultChecked === 0}
+                  dataKey="0"
+                  value="4"
+                  changeFunc={handleSelectDifficult}
+                >
                   Fácil
-                  <input
-                    type="radio"
-                    name="difficult"
-                    data-key="0"
-                    value="4"
-                    defaultChecked={defaultChecked === 0}
-                    onChange={(e) =>
-                      handleSelectDifficult(e, Number(e.target.value))
-                    }
-                  />
-                </label>
-                <label>
+                </RadioInput>
+                <RadioInput
+                  isDefaultChecked={defaultChecked === 1}
+                  dataKey="1"
+                  value="6"
+                  changeFunc={handleSelectDifficult}
+                >
                   Intermediário
-                  <input
-                    type="radio"
-                    name="difficult"
-                    data-key="1"
-                    value="6"
-                    defaultChecked={defaultChecked === 1}
-                    onChange={(e) =>
-                      handleSelectDifficult(e, Number(e.target.value))
-                    }
-                  />
-                </label>
-                <label>
+                </RadioInput>
+                <RadioInput
+                  isDefaultChecked={defaultChecked === 2}
+                  dataKey="2"
+                  value="12"
+                  changeFunc={handleSelectDifficult}
+                >
                   Difícil
-                  <input
-                    type="radio"
-                    name="difficult"
-                    data-key="2"
-                    value="12"
-                    defaultChecked={defaultChecked === 2}
-                    onChange={(e) =>
-                      handleSelectDifficult(e, Number(e.target.value))
-                    }
-                  />
-                </label>
+                </RadioInput>
               </div>
             </S.Fieldset>
           )}
