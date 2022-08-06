@@ -28,6 +28,7 @@ const App = () => {
     "Está pronto?"
   );
   const [cardsQuant, setCardsQuant] = useState<number>(12);
+  const [defaultChecked, setDefaultChecked] = useState<number>(1);
 
   let delayTurnCards = 5; // Delay para virar as cartas (em segundos)
 
@@ -182,6 +183,7 @@ const App = () => {
   ) => {
     if (e.target.checked) {
       setCardsQuant(quant);
+      setDefaultChecked(Number(e.target.getAttribute("data-key")));
       return;
     }
   };
@@ -216,7 +218,9 @@ const App = () => {
                   <input
                     type="radio"
                     name="difficult"
+                    data-key="0"
                     value="4"
+                    defaultChecked={defaultChecked === 0}
                     onChange={(e) =>
                       handleSelectDifficult(e, Number(e.target.value))
                     }
@@ -227,8 +231,9 @@ const App = () => {
                   <input
                     type="radio"
                     name="difficult"
+                    data-key="1"
                     value="6"
-                    defaultChecked
+                    defaultChecked={defaultChecked === 1}
                     onChange={(e) =>
                       handleSelectDifficult(e, Number(e.target.value))
                     }
@@ -239,7 +244,9 @@ const App = () => {
                   <input
                     type="radio"
                     name="difficult"
+                    data-key="2"
                     value="12"
+                    defaultChecked={defaultChecked === 2}
                     onChange={(e) =>
                       handleSelectDifficult(e, Number(e.target.value))
                     }
