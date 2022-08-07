@@ -29,4 +29,8 @@ export const Container = styled.div<ContainerProps>`
     transform: ${(props) =>
       props.shown ? "rotateY(180deg)" : "rotateY(0), scale(2)"};
   }
+
+  @media (max-width: 768px) {
+    height: 80px;
+  }
 `;

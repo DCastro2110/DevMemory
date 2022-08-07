@@ -72,17 +72,12 @@ export const Info = styled.div`
 
 export const Fieldset = styled.fieldset`
   border: none;
+  background-color: #0e64b2;
+  border-radius: 10px;
+  padding: 10px;
 
-  div {
+  label + div {
     margin-top: 10px;
-  }
-
-  label {
-    margin-right: 10px;
-
-    input {
-      margin-left: 5px;
-    }
   }
 `;
 
@@ -90,7 +85,7 @@ export const GameArea = styled.div`
   max-width: 600px;
   width: 100%;
   flex: 1;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
   display: flex;
   height: inherit;
@@ -131,7 +126,6 @@ export const TextAlert = styled.div`
 
 export const GridArea = styled.div<{ cols: number }>`
   justify-items: center;
-  justify-content: center;
   width: 100%;
   display: grid;
   grid-template-columns: repeat(${(props) => props.cols / 2}, 1fr);

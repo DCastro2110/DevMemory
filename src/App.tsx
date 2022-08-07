@@ -211,32 +211,34 @@ const App = () => {
           )}
           {!isStart && (
             <S.Fieldset>
-              <legend>Selecione o nível de dificuldade:</legend>
               <div>
-                <RadioInput
-                  isDefaultChecked={defaultChecked === 0}
-                  dataKey="0"
-                  value="4"
-                  changeFunc={handleSelectDifficult}
-                >
-                  Fácil
-                </RadioInput>
-                <RadioInput
-                  isDefaultChecked={defaultChecked === 1}
-                  dataKey="1"
-                  value="6"
-                  changeFunc={handleSelectDifficult}
-                >
-                  Intermediário
-                </RadioInput>
-                <RadioInput
-                  isDefaultChecked={defaultChecked === 2}
-                  dataKey="2"
-                  value="12"
-                  changeFunc={handleSelectDifficult}
-                >
-                  Difícil
-                </RadioInput>
+                <label>Selecione o nível de dificuldade:</label>
+                <div>
+                  <RadioInput
+                    isDefaultChecked={defaultChecked === 0}
+                    dataKey="0"
+                    value="4"
+                    changeFunc={handleSelectDifficult}
+                  >
+                    Fácil
+                  </RadioInput>
+                  <RadioInput
+                    isDefaultChecked={defaultChecked === 1}
+                    dataKey="1"
+                    value="6"
+                    changeFunc={handleSelectDifficult}
+                  >
+                    Intermediário
+                  </RadioInput>
+                  <RadioInput
+                    isDefaultChecked={defaultChecked === 2}
+                    dataKey="2"
+                    value="12"
+                    changeFunc={handleSelectDifficult}
+                  >
+                    Difícil
+                  </RadioInput>
+                </div>
               </div>
             </S.Fieldset>
           )}
