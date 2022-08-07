@@ -5,7 +5,7 @@ import { GridCard } from "./components/GridCard";
 
 import * as S from "./App.style";
 
-import Logo from "./assets/img/devmemory_logo.png";
+import Logo from "./assets/img/DevMemory.png";
 import StartLogo from "./assets/svg/start.svg";
 import RestartLogo from "./assets/svg/restart.svg";
 
@@ -77,7 +77,7 @@ const App = () => {
 
   // Verificar se há um vencedor
   useEffect(() => {
-    if (moveCount >= items.length) {
+    if (moveCount >= cardsQuant) {
       if (gridItems.every((item) => item.permanentShown)) {
         setIsPlaying(false);
         setHasAWinner(true);

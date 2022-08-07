@@ -13,7 +13,8 @@ export const Container = styled.div<ContainerProps>`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: ${(props) => (props.shown ? "#0e64b2" : "#ccc")};
+  background-color: ${(props) => (props.shown ? "#0e64b2" : "#222")};
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.7);
   transform: ${(props) => (props.shown ? "rotateY(180deg)" : "rotateY(0)")};
   cursor: pointer;
   transition: background-color 150ms ease-in-out, transform 400ms linear;
@@ -24,7 +25,8 @@ export const Container = styled.div<ContainerProps>`
 
   img {
     width: 50px;
-    opacity: ${(props) => (props.shown ? 1 : 0.3)};
-    transform: ${(props) => (props.shown ? "rotateY(180deg)" : "rotateY(0)")};
+    object-fit: cover;
+    transform: ${(props) =>
+      props.shown ? "rotateY(180deg)" : "rotateY(0), scale(2)"};
   }
 `;

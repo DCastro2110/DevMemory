@@ -31,6 +31,8 @@ export const LogoLink = styled.a`
 
   img {
     width: 200px;
+    height: 100px;
+    object-fit: cover;
   }
 `;
 
@@ -49,7 +51,6 @@ export const Info = styled.div`
   span {
     display: block;
     font-size: 18px;
-    color: #16213e;
   }
 
   strong {
@@ -57,7 +58,6 @@ export const Info = styled.div`
     margin-top: 10px;
     font-size: 30px;
     font-weight: bold;
-    color: #16213e;
     width: fit-content;
     border-radius: 10px;
     text-align: center;
@@ -126,7 +126,6 @@ export const TextAlert = styled.div`
   span {
     font-size: 30px;
     font-weight: bold;
-    color: #16213e;
   }
 `;
 

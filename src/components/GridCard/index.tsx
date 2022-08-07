@@ -2,7 +2,7 @@ import { GridItemType } from "../../types/GridItemType";
 
 import * as S from "./style";
 
-import b7Logo from "../../assets/svg/b7.svg";
+import dcLogo from "../../assets/svg/dc.svg";
 import { MouseEventHandler, useEffect, useState } from "react";
 
 type Props = {
@@ -15,7 +15,7 @@ export const GridCard = ({ item, onClick }: Props) => {
     <S.Container shown={item.permanentShown || item.shown} onClick={onClick}>
       <img
         draggable={false}
-        src={((item.shown || item.permanentShown) && item.icon) || b7Logo}
+        src={((item.shown || item.permanentShown) && item.icon) || dcLogo}
       />
     </S.Container>
   );
