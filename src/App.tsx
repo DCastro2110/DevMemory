@@ -30,8 +30,7 @@ const App = () => {
   );
   const [cardsQuant, setCardsQuant] = useState<number>(12);
   const [defaultChecked, setDefaultChecked] = useState<number>(1);
-
-  let delayTurnCards = 5; // Delay para virar as cartas (em segundos)
+  const [delayTurnCards, setDelayTurnCards] = useState<number>(0);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -183,10 +182,14 @@ const App = () => {
     e: ChangeEvent<HTMLInputElement>,
     quant: number
   ) => {
+    const dataKey = Number(e.target.getAttribute("data-key"));
     if (e.target.checked) {
       setCardsQuant(quant);
-      setDefaultChecked(Number(e.target.getAttribute("data-key")));
+      setDefaultChecked(dataKey);
     }
+    if (dataKey === 0) setDelayTurnCards(2);
+    if (dataKey === 1) setDelayTurnCards(3);
+    if (dataKey === 2) setDelayTurnCards(5);
   };
 
   return (
