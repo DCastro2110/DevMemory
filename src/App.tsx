@@ -30,7 +30,7 @@ const App = () => {
   );
   const [cardsQuant, setCardsQuant] = useState<number>(12);
   const [defaultChecked, setDefaultChecked] = useState<number>(1);
-  const [delayTurnCards, setDelayTurnCards] = useState<number>(0);
+  const [delayTurnCards, setDelayTurnCards] = useState<number>(3);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -150,9 +150,9 @@ const App = () => {
       setTimeout(() => {
         for (let i in tmpGridItems) {
           tmpGridItems[i].permanentShown = false;
-          setIsPlaying(true);
         }
         setGridItems([...tmpGridItems]);
+        setIsPlaying(true);
       }, delayTurnCards * 1000);
     }, 1000);
   };
