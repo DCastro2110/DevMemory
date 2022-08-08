@@ -21,9 +21,6 @@ export const Container = styled.div<ContainerProps>`
   &:hover {
     background-color: ${(props) => (props.shown ? "" : "#aaa")};
   }
-  &:active {
-    background-color: ${(props) => (props.shown ? "#0e64b2" : "#222")};
-  }
 
   img {
     width: 50px;
@@ -34,5 +31,9 @@ export const Container = styled.div<ContainerProps>`
 
   @media (max-width: 768px) {
     height: 80px;
+
+    &:hover {
+      background-color: ${(props) => (props.shown ? "#0e64b2" : "#222")};
+    }
   }
 `;
