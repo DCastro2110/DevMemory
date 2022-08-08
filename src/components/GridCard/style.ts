@@ -5,7 +5,6 @@ type ContainerProps = {
 };
 
 export const Container = styled.div<ContainerProps>`
-  max-width: 150px;
   width: 100%;
   height: 100px;
   border-radius: 10px;

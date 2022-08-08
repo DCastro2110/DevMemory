@@ -7,7 +7,7 @@ export const Container = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 50px 0 20px 0;
-  gap: 50px;
+  gap: 20px;
 
   @media (max-width: 768px) {
     flex-direction: column;
@@ -122,6 +122,14 @@ export const TextAlert = styled.div`
     font-size: 30px;
     font-weight: bold;
   }
+
+  @media (max-width: 768px) {
+    height: fit-content;
+
+    span {
+      font-size: 24px;
+    }
+  }
 `;
 
 export const GridArea = styled.div<{ cols: number }>`
@@ -133,5 +141,9 @@ export const GridArea = styled.div<{ cols: number }>`
 
   @media (max-width: 768px) {
     grid-template-columns: repeat(4, 1fr);
+  }
+
+  @media (max-width: 320px) {
+    grid-template-columns: repeat(3, 1fr);
   }
 `;

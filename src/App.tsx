@@ -93,6 +93,7 @@ const App = () => {
     }
 
     if (alertMessage === "Está pronto?") {
+      window.scrollTo(0, document.body.scrollHeight);
       setTimeout(() => {
         setAlertMessage(delayTurnCards);
       }, 1000);
