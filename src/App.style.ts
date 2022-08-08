@@ -78,6 +78,8 @@ export const Fieldset = styled.fieldset`
 
   label + div {
     margin-top: 10px;
+    display: flex;
+    gap: 10px;
   }
 `;
 
