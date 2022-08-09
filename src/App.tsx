@@ -87,7 +87,7 @@ const App = () => {
   // Muda a mensagem do alert
   useEffect(() => {
     if (hasAWinner) {
-      setAlertMessage("Você ganhou!!!");
+      setAlertMessage("Parabéns! Até que sua memória é boa hein.");
       return;
     }
 
