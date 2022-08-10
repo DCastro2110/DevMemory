@@ -2,6 +2,7 @@ import { ChangeEvent, useEffect, useState } from "react";
 
 import { Button } from "./components/Button";
 import { GridCard } from "./components/GridCard";
+import { RadioInput } from "./components/RadioInput";
 
 import * as S from "./App.style";
 
@@ -15,7 +16,6 @@ import { GridItemType } from "./types/GridItemType";
 
 import { randomNum } from "./utils/randomNum";
 import { timerFormator } from "./utils/timerFormator";
-import { RadioInput } from "./components/RadioInput";
 
 const App = () => {
   const [isStart, setIsStart] = useState<boolean>(false);
@@ -32,6 +32,7 @@ const App = () => {
   const [defaultChecked, setDefaultChecked] = useState<number>(1);
   const [delayTurnCards, setDelayTurnCards] = useState<number>(3);
 
+  // Iniciar o timer 
   useEffect(() => {
     const timer = setInterval(() => {
       if (isPlaying) setTimeElapsed((prev) => prev + 1);
@@ -84,7 +85,7 @@ const App = () => {
     }
   }, [moveCount]);
 
-  // Muda a mensagem do alert
+  // Mudar a mensagem do alert
   useEffect(() => {
     if (hasAWinner) {
       setAlertMessage("Parabéns!");
@@ -109,8 +110,6 @@ const App = () => {
     return () => clearInterval(timer);
   }, [alertMessage, hasAWinner]);
 
-  // Setar o valor inicial da quantidade de cartas
-
   const handleStart = () => {
     setIsStart(true);
     createGrid();
@@ -120,6 +119,7 @@ const App = () => {
     setAlertMessage("Está pronto?");
     let tmpGridItems: GridItemType[] = [];
 
+    // Criando cards vazios
     for (let i = 0; i < cardsQuant * 2; i++) {
       tmpGridItems.push({
         icon: null,
@@ -127,7 +127,8 @@ const App = () => {
         permanentShown: false,
       });
     }
-
+    
+    // Adicionado as imagens aos cards
     for (let i = 0; i < 2; i++) {
       for (let z = 0; z < cardsQuant; z++) {
         let pos;
@@ -141,12 +142,14 @@ const App = () => {
     }
     setGridItems([...tmpGridItems]);
 
+    // Mostrando a posição dos cards para ser decorado
     setTimeout(() => {
       for (let i in tmpGridItems) {
         tmpGridItems[i].permanentShown = true;
       }
       setGridItems([...tmpGridItems]);
 
+      // Fechando os cards após certo tempo
       setTimeout(() => {
         for (let i in tmpGridItems) {
           tmpGridItems[i].permanentShown = false;
