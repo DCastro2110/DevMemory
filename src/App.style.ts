@@ -102,6 +102,10 @@ export const GameArea = styled.div`
 
 export const StartAlert = styled.strong`
   font-size: 20px;
+
+  @media (max-width: 425px) {
+    font-size: 17px;
+  }
 `;
 
 export const MainArea = styled.div`
@@ -130,6 +134,12 @@ export const TextAlert = styled.div`
 
     span {
       font-size: 24px;
+    }
+  }
+
+  @media (max-width: 425px) {
+    span {
+      font-size: 17px;
     }
   }
 `;
