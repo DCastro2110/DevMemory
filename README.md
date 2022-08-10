@@ -11,5 +11,7 @@ Projeto feito durante o curso de React da plataforma B7Web. Contém customizaç�
 O projeto consiste num simples jogo da memória. Antes de iniciar, o usuário pode escolher o nível de dificuldade e assim, de acordo com o nível escolhido, o tempo de apresentação das cartas e a quantidade de cartas mudam.
 
 ## Layout - Mobile
+Em Produção 🚀
 
-![Mobile 1](https://github.com/DCastro2110/assets/blob/master/raw/DevMemory/mobile2.png)
+
+
