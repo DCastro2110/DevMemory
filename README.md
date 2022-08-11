@@ -43,13 +43,22 @@ Este projeto foi desenvolvido usando as seguintes tecnologias:
 
 ## ⚙️ Configuração
 
-Instalando das dependências
+### Clonando projeto
+
+```bash
+git clone https://github.com/DCastro2110/DevMemory.git
+cd ./DevMemory
+```
+
+### Instalando as dependências
 
 ```bash
 npm install
+# ou
+npm i
 ```
 
-Rodando o projeto
+### Rodando o projeto
 
 ```bash
 npm run dev
