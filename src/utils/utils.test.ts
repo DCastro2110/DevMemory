@@ -6,7 +6,7 @@ it("should return a integer less than or equal the double of quant informated", 
   let result2 = randomNum(45);
 
   expect(result1).toBeLessThan(20);
-  expect(result2).toBeLessThan(45);
+  expect(result2).toBeLessThan(90);
 });
 
 it("should transform secons in hours formate", () => {

@@ -28,7 +28,7 @@ const App = () => {
   const [alertMessage, setAlertMessage] = useState<string | number>(
     "Está pronto?"
   );
-  const [cardsQuant, setCardsQuant] = useState<number>(12);
+  const [cardsQuant, setCardsQuant] = useState<number>(6);
   const [defaultChecked, setDefaultChecked] = useState<number>(1);
   const [delayTurnCards, setDelayTurnCards] = useState<number>(3);
 
