@@ -34,54 +34,69 @@ describe("testing when game start", () => {
   });
 });
 
-describe('testing whether the number of cards is equivalent to the level chosen', () => {
-  
+describe("testing whether the number of cards is equivalent to the level chosen", () => {
   it("should appear 8 cards when level is easy", () => {
     const { container } = render(<App />);
 
     act(() => {
-      const radio = container.getElementsByTagName('input')[0];
+      const radio = container.getElementsByTagName("input")[0];
       const startBtn = container.getElementsByTagName("button")[0];
-      
+
       radio.click();
       startBtn.click();
-    })
+    });
 
     const cards = container.getElementsByClassName("card");
     expect(cards.length).toEqual(8);
-
-  })
+  });
 
   it("should appear 12 cards when level is intermediary", () => {
     const { container } = render(<App />);
 
     act(() => {
-      const radio = container.getElementsByTagName('input')[1];
+      const radio = container.getElementsByTagName("input")[1];
       const startBtn = container.getElementsByTagName("button")[0];
-      
+
       radio.click();
       startBtn.click();
-    })
+    });
 
     const cards = container.getElementsByClassName("card");
     expect(cards.length).toEqual(12);
-  })
+  });
 
   it("should appear 24 cards when level is hard", () => {
     const { container } = render(<App />);
 
     act(() => {
-      const radio = container.getElementsByTagName('input')[2];
+      const radio = container.getElementsByTagName("input")[2];
       const startBtn = container.getElementsByTagName("button")[0];
-      
+
       radio.click();
       startBtn.click();
-    })
+    });
 
     const cards = container.getElementsByClassName("card");
     expect(cards.length).toEqual(24);
+  });
+});
 
-  })
-})
+it("should back to home when restart button is clicked", () => {
+  const { container } = render(<App />);
+
+  act(() => {
+    const startButton = container.getElementsByTagName("button")[0];
+    startButton.click();
+  });
+
+  act(() => {
+    const restarButton = container.getElementsByTagName("button")[0];
+    restarButton.click();
+  });
+
+  const initialText = screen.getByText("Clique em iniciar para começar o jogo");
+
+  expect(initialText).toBeInTheDocument();
+});
 
 export {};
