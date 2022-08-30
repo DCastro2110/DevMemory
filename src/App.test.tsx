@@ -96,11 +96,28 @@ it("should have appear 'Em jogo' text", async () => {
   const startButton = container.getElementsByTagName('button')[0];
   await userEvent.click(startButton);
 
+  await waitFor(() => {
+    expect(getByText('Em Jogo')).toBeInTheDocument();
+  }, { timeout: 8000 })
+})
+
+it("should increment onde to counter when two cards are clicked", async () => {
+  const { container, getByText, getAllByTestId, getByTestId } = render(<App />);
+
+  const startButton = container.getElementsByTagName('button')[0];
+  await userEvent.click(startButton);
 
   await waitFor(() => {
     expect(getByText('Em Jogo')).toBeInTheDocument();
-    debug();
   }, { timeout: 8000 })
+
+  const cards = getAllByTestId('card');
+  const counter = getByTestId('mov-counter');
+
+  await userEvent.click(cards[0]);
+  await userEvent.click(cards[1]);
+
+  expect(parseInt(counter.innerHTML)).toEqual(1);
 })
 
 
