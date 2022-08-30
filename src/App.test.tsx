@@ -1,5 +1,4 @@
-import { getAllByTestId, render, screen, waitFor } from "@testing-library/react";
-import { act } from "react-dom/test-utils";
+import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from '@testing-library/user-event';
 import App from "./App";
 
@@ -22,13 +21,13 @@ describe("testing when game start", () => {
     ).toBeInTheDocument();
   });
 
-  it("should start the game when player click in start button", () => {
+  it("should start the game when player click in start button", async () => {
     const { container, getAllByTestId } = render(<App />);
 
-    act(() => {
-      const startBtn = container.getElementsByTagName("button")[0];
-      startBtn.click();
-    });
+
+    const startBtn = container.getElementsByTagName("button")[0];
+    await userEvent.click(startBtn)
+
 
     const cards = getAllByTestId("card");
     expect(cards.length).toBeGreaterThan(0);
@@ -36,64 +35,55 @@ describe("testing when game start", () => {
 });
 
 describe("testing whether the number of cards is equivalent to the level chosen", () => {
-  it("should appear 8 cards when level is easy", () => {
+  it("should appear 8 cards when level is easy", async () => {
     const { container, getAllByTestId } = render(<App />);
 
-    act(() => {
-      const radio = container.getElementsByTagName("input")[0];
-      const startBtn = container.getElementsByTagName("button")[0];
+    const radio = container.getElementsByTagName("input")[0];
+    const startBtn = container.getElementsByTagName("button")[0];
 
-      radio.click();
-      startBtn.click();
-    });
+    await userEvent.click(radio)
+    await userEvent.click(startBtn)
 
     const cards = getAllByTestId("card");
     expect(cards.length).toEqual(8);
   });
 
-  it("should appear 12 cards when level is intermediary", () => {
+  it("should appear 12 cards when level is intermediary", async () => {
     const { container, getAllByTestId } = render(<App />);
 
-    act(() => {
-      const radio = container.getElementsByTagName("input")[1];
-      const startBtn = container.getElementsByTagName("button")[0];
+    const radio = container.getElementsByTagName("input")[1];
+    const startBtn = container.getElementsByTagName("button")[0];
 
-      radio.click();
-      startBtn.click();
-    });
+    await userEvent.click(radio)
+    await userEvent.click(startBtn)
 
     const cards = getAllByTestId("card");
     expect(cards.length).toEqual(12);
   });
 
-  it("should appear 24 cards when level is hard", () => {
+  it("should appear 24 cards when level is hard", async () => {
     const { container, getAllByTestId } = render(<App />);
 
-    act(() => {
-      const radio = container.getElementsByTagName("input")[2];
-      const startBtn = container.getElementsByTagName("button")[0];
+    const radio = container.getElementsByTagName("input")[2];
+    const startBtn = container.getElementsByTagName("button")[0];
 
-      radio.click();
-      startBtn.click();
-    });
+    await userEvent.click(radio)
+    await userEvent.click(startBtn)
 
     const cards = getAllByTestId("card");
     expect(cards.length).toEqual(24);
   });
 });
 
-it("should back to home when restart button is clicked", () => {
+it("should back to home when restart button is clicked", async () => {
   const { container } = render(<App />);
 
-  act(() => {
-    const startButton = container.getElementsByTagName("button")[0];
-    startButton.click();
-  });
+  const startButton = container.getElementsByTagName("button")[0];
+  await userEvent.click(startButton);
 
-  act(() => {
-    const restarButton = container.getElementsByTagName("button")[0];
-    restarButton.click();
-  });
+  const restartButton = container.getElementsByTagName("button")[0];
+  await userEvent.click(restartButton)
+
 
   const initialText = screen.getByText("Clique em iniciar para começar o jogo");
 
@@ -106,12 +96,12 @@ it("should have appear 'Em jogo' text", async () => {
   const startButton = container.getElementsByTagName('button')[0];
   await userEvent.click(startButton);
 
-  
+
   await waitFor(() => {
     expect(getByText('Em Jogo')).toBeInTheDocument();
     debug();
-  }, {timeout: 8000})
+  }, { timeout: 8000 })
 })
 
 
-export {};
+export { };
