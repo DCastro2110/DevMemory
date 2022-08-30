@@ -212,7 +212,7 @@ const App = () => {
 
               <S.Info>
                 <span>Movimentos</span>
-                <strong>{moveCount}</strong>
+                <strong data-testid="mov-counter">{moveCount}</strong>
               </S.Info>
             </>
           )}
